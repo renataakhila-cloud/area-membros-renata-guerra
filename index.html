@@ -1,0 +1,1984 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formação IPS - Dra. Renata Guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --az1:       #0B1A35;
+      --az2:       #1E3A6E;
+      --az3:       #2563EB;
+      --az-light:  #DBEAFE;
+      --az-pale:   #F0F5FF;
+      --g1:        #5C3F0E;
+      --g2:        #B8973A;
+      --g3:        #D4B86A;
+      --g-acc:     #E8D49A;
+      --bg:        #FFFFFF;
+      --bg-alt:    #F4F7FC;
+      --bg-card:   #FFFFFF;
+      --txt:       #0F172A;
+      --txt-med:   #1E3A6E;
+      --txt-muted: #64748B;
+      --border:    rgba(37,99,235,0.12);
+      --border-g:  rgba(184,151,58,0.25);
+      --shadow:    0 2px 12px rgba(37,99,235,0.08);
+      --shadow-lg: 0 16px 48px rgba(11,26,53,0.12);
+      --radius:    14px;
+      --radius-sm: 8px;
+      --ease:      cubic-bezier(0.16,1,0.3,1);
+      --serif:     'Cormorant Garamond', Georgia, serif;
+      --font:      'Inter', sans-serif;
+      --font-b:    'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); background: var(--bg); color: var(--txt); min-height: 100vh; overflow-x: hidden; }
+
+    /* ─── LOGIN ──────────────────────────────────────────────── */
+    #login-screen {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .login-left {
+      flex: 1;
+      background: var(--az1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+    }
+
+    .login-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 30% 60%, rgba(184,151,58,0.15) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 60% at 80% 20%, rgba(37,99,235,0.2) 0%, transparent 60%);
+    }
+
+    .login-foto {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(184,151,58,0.5);
+      box-shadow: 0 0 0 8px rgba(184,151,58,0.1), 0 20px 60px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 28px;
+    }
+
+    .login-foto-placeholder {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--az2), var(--az1));
+      border: 3px solid rgba(184,151,58,0.5);
+      box-shadow: 0 0 0 8px rgba(184,151,58,0.1), 0 20px 60px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 28px;
+    }
+
+    .login-nome {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: #FFFFFF;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .login-nome em {
+      color: var(--g3);
+      font-style: italic;
+    }
+
+    .login-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(184,151,58,0.7);
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .login-badges {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .login-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .login-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--g2);
+      flex-shrink: 0;
+    }
+
+    .login-right {
+      width: 420px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 48px;
+      box-shadow: -8px 0 40px rgba(11,26,53,0.12);
+    }
+
+    .login-form { width: 100%; }
+
+    .login-logo-text {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--az1);
+      margin-bottom: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    .login-logo-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--txt-muted);
+      margin-bottom: 40px;
+    }
+
+    .login-label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--txt-muted);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .login-input {
+      width: 100%;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      color: var(--txt);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      margin-bottom: 20px;
+      background: var(--bg-alt);
+    }
+    .login-input:focus {
+      border-color: var(--az3);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      background: #fff;
+    }
+
+    .login-btn {
+      width: 100%;
+      background: linear-gradient(135deg, var(--az1) 0%, var(--az2) 60%, var(--az3) 100%);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 15px;
+      font-family: var(--font);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #fff;
+      cursor: pointer;
+      transition: filter 0.2s, transform 0.2s;
+      margin-bottom: 8px;
+    }
+    .login-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+    .login-gold-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .login-gold-line::before, .login-gold-line::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(184,151,58,0.3));
+    }
+    .login-gold-line::after {
+      background: linear-gradient(to left, transparent, rgba(184,151,58,0.3));
+    }
+    .login-gold-line span {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g2);
+    }
+
+    .login-erro {
+      font-size: 0.8rem;
+      color: #DC2626;
+      display: none;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 768px) {
+      #login-screen { flex-direction: column; }
+      .login-left { padding: 40px 24px; min-height: 40vh; }
+      .login-foto, .login-foto-placeholder { width: 120px; height: 120px; font-size: 40px; }
+      .login-nome { font-size: 1.6rem; }
+      .login-right { width: 100%; padding: 40px 24px; }
+    }
+
+    /* ─── APP ────────────────────────────────────────────────── */
+    #app { display: none; }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--az1);
+      border-bottom: 1px solid rgba(184,151,58,0.2);
+      box-shadow: 0 2px 20px rgba(11,26,53,0.3);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--g2);
+      box-shadow: 0 0 8px rgba(184,151,58,0.5);
+    }
+    .header-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(184,151,58,0.55);
+      box-shadow: 0 0 0 3px rgba(184,151,58,0.12);
+      flex-shrink: 0;
+    }
+
+    .header-logo {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #FFFFFF;
+      letter-spacing: 0.03em;
+    }
+
+    .header-logo em { color: var(--g3); font-style: italic; }
+
+    .header-tabs {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 8px 18px;
+      font-family: var(--font);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.07); }
+    .tab-btn.active { color: var(--g3); background: rgba(184,151,58,0.12); }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-sair {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 7px 14px;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-sair:hover { background: rgba(255,255,255,0.12); color: rgba(255,255,255,0.85); }
+
+    @media (max-width: 768px) {
+      .header-tabs { display: none; }
+    }
+
+    /* ─── MAIN ───────────────────────────────────────────────── */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 32px 80px;
+    }
+
+    /* ─── TABS CONTENT ───────────────────────────────────────── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ─── WELCOME BANNER ─────────────────────────────────────── */
+    .welcome-banner {
+      background: linear-gradient(135deg, var(--az1) 0%, var(--az2) 100%);
+      border-radius: var(--radius);
+      padding: 40px 48px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 90% 50%, rgba(184,151,58,0.12) 0%, transparent 70%);
+    }
+
+    .welcome-banner::after {
+      content: '';
+      position: absolute;
+      right: -40px;
+      top: -40px;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(184,151,58,0.1);
+    }
+
+    .welcome-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--g3);
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .welcome-h1 {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .welcome-h1 em { color: var(--g3); font-style: italic; }
+
+    .welcome-sub {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 500px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ─── STATS ROW ──────────────────────────────────────────── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s;
+    }
+    .stat-card:hover { box-shadow: var(--shadow-lg); }
+
+    .stat-num {
+      font-family: var(--serif);
+      font-size: 2.4rem;
+      font-weight: 400;
+      color: var(--az2);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--txt-muted);
+    }
+
+    @media (max-width: 600px) {
+      .stats-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── TRILHA DE APRENDIZAGEM ─────────────────────────────── */
+    .trilha-section {
+      background: var(--bg-alt);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-bottom: 40px;
+      border: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--g2);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border-g), transparent);
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--az1);
+      margin-bottom: 28px;
+    }
+
+    .trilha-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .trilha-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .trilha-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 40px;
+      bottom: -20px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--az3), rgba(37,99,235,0.1));
+    }
+
+    .trilha-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--az2), var(--az3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+    }
+
+    .trilha-num.gold {
+      background: linear-gradient(135deg, var(--g1), var(--g2));
+      box-shadow: 0 4px 12px rgba(184,151,58,0.3);
+    }
+
+    .trilha-body {
+      flex: 1;
+      padding: 8px 0 28px;
+    }
+
+    .trilha-titulo {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--az1);
+      margin-bottom: 3px;
+    }
+
+    .trilha-mes {
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--txt-muted);
+      margin-bottom: 4px;
+    }
+
+    .trilha-desc { font-size: 0.82rem; color: var(--txt-muted); line-height: 1.5; }
+
+    /* ─── SECTION HEADER ─────────────────────────────────────── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .section-h2 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--az1);
+    }
+
+    .section-badge {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--az-pale);
+      color: var(--az3);
+      border: 1px solid var(--az-light);
+      border-radius: 20px;
+      padding: 4px 12px;
+    }
+
+    /* ─── GRID MODULOS ───────────────────────────────────────── */
+    .grid-modulos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    @media (max-width: 600px) {
+      .grid-modulos { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CARD MODULO ────────────────────────────────────────── */
+    .card-modulo {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s var(--ease);
+      box-shadow: var(--shadow);
+    }
+    .card-modulo:hover {
+      border-color: rgba(37,99,235,0.3);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--az1) 0%, var(--az2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 70% at 70% 30%, rgba(184,151,58,0.12) 0%, transparent 60%);
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+    }
+
+    .card-thumb-icon {
+      font-size: 2.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-thumb-num {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(11,26,53,0.8);
+      border: 1px solid rgba(184,151,58,0.4);
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--g3);
+      backdrop-filter: blur(4px);
+      z-index: 2;
+    }
+
+    .card-thumb-count {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(11,26,53,0.7);
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2;
+    }
+
+    .card-body { padding: 20px 22px 22px; }
+
+    .card-mes {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--az3);
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .card-titulo {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--az1);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .card-desc { font-size: 0.8rem; color: var(--txt-muted); line-height: 1.5; }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--g2);
+    }
+
+    .card-arrow {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--az-pale);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--az3);
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .card-modulo:hover .card-arrow { background: var(--az3); color: #fff; }
+
+    /* ─── MATERIAIS ──────────────────────────────────────────── */
+    .grid-materiais {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .material-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .material-card:hover {
+      border-color: rgba(184,151,58,0.4);
+      box-shadow: 0 8px 24px rgba(184,151,58,0.1);
+      transform: translateY(-2px);
+    }
+
+    .material-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, var(--az-pale), var(--az-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .material-info { flex: 1; }
+    .material-titulo { font-weight: 700; font-size: 0.88rem; color: var(--az1); margin-bottom: 4px; }
+    .material-desc { font-size: 0.76rem; color: var(--txt-muted); line-height: 1.5; }
+
+    .material-dl {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: var(--az-pale);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--az3);
+      font-size: 13px;
+      flex-shrink: 0;
+      align-self: center;
+      transition: all 0.2s;
+    }
+    .material-card:hover .material-dl { background: var(--az3); color: #fff; border-color: var(--az3); }
+
+    /* ─── BONUS ──────────────────────────────────────────────── */
+    .grid-bonus {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .bonus-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-g);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: all 0.25s var(--ease);
+    }
+    .bonus-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(184,151,58,0.12);
+    }
+
+    .bonus-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--g1), var(--g2), var(--g3));
+    }
+
+    .bonus-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+    .bonus-titulo { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; color: var(--az1); margin-bottom: 8px; }
+    .bonus-desc { font-size: 0.82rem; color: var(--txt-muted); line-height: 1.6; }
+
+    .bonus-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g2);
+      border: 1px solid rgba(184,151,58,0.3);
+      border-radius: 20px;
+      padding: 3px 10px;
+    }
+
+    /* ─── MOBILE TABS BOTTOM ─────────────────────────────────── */
+    .mobile-tabs {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--az1);
+      border-top: 1px solid rgba(184,151,58,0.2);
+      padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+      z-index: 100;
+    }
+
+    .mobile-tabs-inner {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .mob-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 16px;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--font);
+      transition: color 0.2s;
+    }
+    .mob-tab.active { color: var(--g3); }
+    .mob-tab-icon { font-size: 1.1rem; }
+
+    /* ─── CRM ─────────────────────────────────────────────── */
+    .crm-top { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:24px; }
+    .crm-search { flex:1; min-width:200px; border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:10px 16px; font-family:var(--font); font-size:0.9rem; color:var(--txt); outline:none; background:var(--bg-alt); transition:border-color .2s; }
+    .crm-search:focus { border-color:var(--az3); }
+    .btn-crm-add { display:flex; align-items:center; gap:8px; background:linear-gradient(135deg,var(--az1),var(--az2)); color:#fff; border:none; border-radius:var(--radius-sm); padding:10px 20px; font-size:0.8rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:filter .2s; white-space:nowrap; }
+    .btn-crm-add:hover { filter:brightness(1.15); }
+    .crm-stats { display:flex; gap:16px; flex-wrap:wrap; margin-bottom:28px; }
+    .crm-stat { background:var(--bg-alt); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 20px; min-width:120px; }
+    .crm-stat .cs-num { font-family:var(--serif); font-size:2rem; font-weight:600; color:var(--az2); line-height:1; }
+    .crm-stat .cs-label { font-size:0.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--txt-muted); margin-top:4px; }
+    .crm-table-wrap { overflow-x:auto; border-radius:var(--radius); border:1px solid var(--border); }
+    .crm-table { width:100%; border-collapse:collapse; font-size:0.87rem; }
+    .crm-table th { background:var(--az1); color:rgba(255,255,255,.8); font-size:0.7rem; letter-spacing:.14em; text-transform:uppercase; padding:12px 16px; text-align:left; white-space:nowrap; }
+    .crm-table td { padding:13px 16px; border-bottom:1px solid var(--border); vertical-align:middle; color:var(--txt); }
+    .crm-table tr:last-child td { border-bottom:none; }
+    .crm-table tr:hover td { background:var(--bg-alt); }
+    .crm-nome { font-weight:600; color:var(--az1); }
+    .crm-email { color:var(--txt-muted); font-size:0.82rem; }
+    .crm-tel { font-size:0.82rem; }
+    .badge-esp { display:inline-block; background:rgba(37,99,235,.1); color:var(--az2); font-size:0.7rem; letter-spacing:.06em; padding:3px 10px; border-radius:999px; font-weight:600; }
+    .badge-status { display:inline-block; font-size:0.7rem; letter-spacing:.06em; padding:3px 10px; border-radius:999px; font-weight:700; }
+    .badge-status.ativo { background:rgba(34,197,94,.12); color:#15803d; }
+    .badge-status.inativo { background:rgba(239,68,68,.1); color:#b91c1c; }
+    .badge-status.pendente { background:rgba(245,158,11,.12); color:#b45309; }
+    .crm-acoes { display:flex; gap:8px; }
+    .btn-edit { background:var(--bg-alt); border:1px solid var(--border); border-radius:6px; padding:6px 12px; font-size:0.76rem; font-weight:600; color:var(--az2); cursor:pointer; transition:background .15s; }
+    .btn-edit:hover { background:rgba(37,99,235,.08); }
+    .btn-del { background:rgba(239,68,68,.07); border:1px solid rgba(239,68,68,.2); border-radius:6px; padding:6px 12px; font-size:0.76rem; font-weight:600; color:#dc2626; cursor:pointer; transition:background .15s; }
+    .btn-del:hover { background:rgba(239,68,68,.15); }
+    .crm-empty { text-align:center; padding:48px 24px; color:var(--txt-muted); font-size:0.9rem; }
+
+    /* MODAL CRM */
+    .crm-overlay { position:fixed; inset:0; background:rgba(11,26,53,.55); z-index:2000; display:none; align-items:center; justify-content:center; padding:20px; }
+    .crm-overlay.open { display:flex; }
+    .crm-modal { background:#fff; border-radius:var(--radius); width:100%; max-width:520px; max-height:90vh; overflow-y:auto; box-shadow:var(--shadow-lg); }
+    .crm-modal-header { display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--border); }
+    .crm-modal-titulo { font-family:var(--serif); font-size:1.3rem; color:var(--az1); }
+    .crm-modal-fechar { background:none; border:none; font-size:1.2rem; color:var(--txt-muted); cursor:pointer; padding:4px 8px; border-radius:6px; }
+    .crm-modal-fechar:hover { background:var(--bg-alt); }
+    .crm-modal-body { padding:24px; display:flex; flex-direction:column; gap:16px; }
+    .crm-field label { display:block; font-size:0.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--txt-muted); font-weight:600; margin-bottom:6px; }
+    .crm-field input, .crm-field select, .crm-field textarea { width:100%; border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:11px 14px; font-family:var(--font); font-size:0.92rem; color:var(--txt); outline:none; background:var(--bg-alt); transition:border-color .2s; }
+    .crm-field input:focus, .crm-field select:focus, .crm-field textarea:focus { border-color:var(--az3); background:#fff; }
+    .crm-field textarea { resize:vertical; min-height:72px; }
+    .crm-field-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .crm-modal-footer { display:flex; gap:12px; padding:16px 24px; border-top:1px solid var(--border); }
+    .btn-salvar { flex:1; background:linear-gradient(135deg,var(--az1),var(--az2)); color:#fff; border:none; border-radius:var(--radius-sm); padding:12px; font-weight:700; font-size:0.82rem; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; transition:filter .2s; }
+    .btn-salvar:hover { filter:brightness(1.15); }
+    .btn-cancelar { background:var(--bg-alt); color:var(--txt-muted); border:1px solid var(--border); border-radius:var(--radius-sm); padding:12px 20px; font-size:0.82rem; font-weight:600; cursor:pointer; }
+    .crm-loading { text-align:center; padding:32px; color:var(--txt-muted); }
+    @media(max-width:600px) {
+      .crm-field-row { grid-template-columns:1fr; }
+      .crm-table th:nth-child(3), .crm-table td:nth-child(3),
+      .crm-table th:nth-child(5), .crm-table td:nth-child(5) { display:none; }
+    }
+
+    @media (max-width: 768px) {
+      .mobile-tabs { display: block; }
+      .main { padding: 24px 16px 100px; }
+      .welcome-banner { padding: 24px; }
+    }
+
+    /* ─── PAINEL AULAS ───────────────────────────────────────── */
+    .painel-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(11,26,53,0.6);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+
+    .painel-aulas {
+      width: 100%;
+      max-width: 520px;
+      height: 100%;
+      background: #FFFFFF;
+      overflow-y: auto;
+      box-shadow: -8px 0 40px rgba(11,26,53,0.2);
+      animation: slideIn 0.35s var(--ease);
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+
+    .painel-header {
+      background: var(--az1);
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .painel-back {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .painel-back:hover { background: rgba(255,255,255,0.2); }
+
+    .painel-header-text { flex: 1; }
+
+    .painel-mes {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--g3);
+      margin-bottom: 2px;
+    }
+
+    .painel-titulo {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #FFFFFF;
+    }
+
+    .painel-body { padding: 24px 28px 40px; }
+    .painel-desc { font-size: 0.85rem; color: var(--txt-muted); line-height: 1.6; margin-bottom: 24px; }
+
+    .lista-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--az3);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .lista-aulas { display: flex; flex-direction: column; gap: 10px; }
+
+    .item-aula {
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .item-aula:hover {
+      border-color: var(--az3);
+      background: var(--az-pale);
+    }
+
+    .aula-play {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--az2), var(--az3));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(37,99,235,0.25);
+    }
+    .aula-play svg { width: 13px; height: 13px; fill: #fff; margin-left: 2px; }
+
+    .aula-info { flex: 1; }
+    .aula-titulo { font-size: 0.88rem; font-weight: 600; color: var(--az1); margin-bottom: 2px; }
+    .aula-meta { font-size: 0.72rem; color: var(--txt-muted); }
+    .aula-dur { font-size: 0.72rem; color: var(--txt-muted); flex-shrink: 0; }
+
+    @media (max-width: 600px) {
+      .painel-aulas { max-width: 100%; }
+    }
+
+    /* ─── PLAYER OVERLAY ─────────────────────────────────────── */
+    .player-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.97);
+      z-index: 300;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .player-header {
+      width: 100%;
+      max-width: 960px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 16px;
+    }
+
+    .player-titulo { font-family: var(--serif); font-size: 1.1rem; color: #FFFFFF; flex: 1; }
+
+    .player-close {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1rem;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .player-close:hover { background: rgba(255,255,255,0.2); }
+
+    .player-wrap {
+      width: 100%;
+      max-width: 960px;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: #000;
+    }
+    .player-wrap iframe { width: 100%; height: 100%; border: none; }
+
+    .player-desc {
+      width: 100%;
+      max-width: 960px;
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── LOGIN ──────────────────────────────────────────────── -->
+<div id="login-screen">
+
+  <div class="login-left">
+    <div id="login-foto-wrap">
+      <!-- Foto inserida pelo JS -->
+    </div>
+    <div class="login-nome">Dra. <em>Renata</em> Guerra</div>
+    <div class="login-tag">Formação em Psiquiatria Somatopsíquica</div>
+    <div class="login-badges">
+      <div class="login-badge">6 meses de formação ao vivo</div>
+      <div class="login-badge">Método IPS - abordagem corpo-mente</div>
+      <div class="login-badge">Certificação ao término</div>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <div class="login-form">
+      <div class="login-logo-text">Portal do Aluno</div>
+      <div class="login-logo-sub">Formação IPS - Dra. Renata Guerra</div>
+
+      <label class="login-label" for="campo-senha">Senha de acesso</label>
+      <input class="login-input" type="password" id="campo-senha" placeholder="••••••••" autocomplete="off">
+      <button class="login-btn" onclick="tentarLogin()">Acessar Portal</button>
+      <div class="login-erro" id="login-erro">Senha incorreta. Tente novamente.</div>
+
+      <div class="login-gold-line"><span>Formação IPS</span></div>
+
+      <div style="font-size:0.75rem;color:var(--txt-muted);text-align:center;line-height:1.6;">
+        Em caso de dúvidas, entre em contato<br>com a equipe da Dra. Renata Guerra.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ─── APP ───────────────────────────────────────────────── -->
+<div id="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-brand">
+        <img src="renata-foto.jpg" alt="Dra. Renata Guerra" class="header-avatar">
+        <div class="header-dot"></div>
+        <div class="header-logo">Dra. <em>Renata</em> Guerra</div>
+      </div>
+
+      <div class="header-tabs" id="header-tabs">
+        <button class="tab-btn active" onclick="mudarTab('inicio', this)">Início</button>
+        <button class="tab-btn" onclick="mudarTab('modulos', this)">Módulos</button>
+        <button class="tab-btn" onclick="mudarTab('materiais', this)">Materiais</button>
+        <button class="tab-btn" onclick="mudarTab('bonus', this)">Bônus</button>
+        <button class="tab-btn tab-crm-btn" id="tab-crm-btn" onclick="mudarTab('crm', this)" style="display:none;">CRM</button>
+      </div>
+
+      <div class="header-right">
+        <button class="btn-sair" onclick="sair()">Sair</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TAB INICIO -->
+    <div class="tab-content active" id="tab-inicio">
+
+      <!-- Welcome Banner -->
+      <div class="welcome-banner" style="display:flex;align-items:center;gap:32px;flex-wrap:wrap;">
+        <img src="renata-foto.jpg" alt="Dra. Renata Guerra"
+          style="width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid rgba(184,151,58,0.5);box-shadow:0 0 0 6px rgba(184,151,58,0.1),0 8px 32px rgba(11,26,53,0.18);flex-shrink:0;">
+        <div>
+          <div class="welcome-tag">Bem-vindo ao Portal</div>
+          <div class="welcome-h1" id="bv-titulo">Sua jornada na <em>Psiquiatria Somatopsíquica</em></div>
+          <div class="welcome-sub" id="bv-desc">Selecione um módulo para começar. A formação segue uma trilha progressiva de 6 meses.</div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Meses de Formação</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">24</div>
+          <div class="stat-label">Encontros ao Vivo</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">12</div>
+          <div class="stat-label">Materiais</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Certificado</div>
+        </div>
+      </div>
+
+      <!-- Trilha de Aprendizagem -->
+      <div class="trilha-section">
+        <div class="section-label">Jornada de Aprendizagem</div>
+        <div class="section-title">Trilha de 6 Meses</div>
+        <div class="trilha-list" id="trilha-list">
+          <!-- Gerado pelo JS -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TAB MODULOS -->
+    <div class="tab-content" id="tab-modulos">
+      <div class="section-header" style="margin-bottom:24px;">
+        <div class="section-h2">Módulos da Formação</div>
+        <div class="section-badge" id="badge-modulos">0 módulos</div>
+      </div>
+      <div class="grid-modulos" id="grid-modulos">
+        <!-- Gerado pelo JS -->
+      </div>
+    </div>
+
+    <!-- TAB MATERIAIS -->
+    <div class="tab-content" id="tab-materiais">
+      <div class="section-header" style="margin-bottom:24px;">
+        <div class="section-h2">Materiais do Curso</div>
+        <div class="section-badge" id="badge-materiais">0 materiais</div>
+      </div>
+      <div class="grid-materiais" id="grid-materiais">
+        <!-- Gerado pelo JS -->
+      </div>
+    </div>
+
+    <!-- TAB CRM -->
+    <div class="tab-content" id="tab-crm">
+      <div class="section-header" style="margin-bottom:20px;">
+        <div class="section-h2">CRM - Alunos da Formação</div>
+      </div>
+      <div class="crm-stats">
+        <div class="crm-stat"><div class="cs-num" id="crm-total">-</div><div class="cs-label">Total de Alunos</div></div>
+        <div class="crm-stat"><div class="cs-num" id="crm-ativos">-</div><div class="cs-label">Ativos</div></div>
+        <div class="crm-stat"><div class="cs-num" id="crm-pendentes">-</div><div class="cs-label">Pendentes</div></div>
+      </div>
+      <div class="crm-top">
+        <input class="crm-search" type="text" id="crm-busca" placeholder="Buscar por nome, e-mail ou especialidade..." oninput="crmFiltrar()">
+        <button class="btn-crm-add" onclick="crmAbrirModal()">+ Novo Aluno</button>
+      </div>
+      <div class="crm-table-wrap">
+        <table class="crm-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>Especialidade</th>
+              <th>Ingresso</th>
+              <th>Acesso</th>
+              <th>Saída</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="crm-tbody">
+            <tr><td colspan="9" class="crm-loading">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB BONUS -->
+    <div class="tab-content" id="tab-bonus">
+      <div class="section-header" style="margin-bottom:24px;">
+        <div class="section-h2">Bônus Exclusivos</div>
+        <div class="section-badge" id="badge-bonus">0 bônus</div>
+      </div>
+      <div class="grid-bonus" id="grid-bonus">
+        <!-- Gerado pelo JS -->
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Mobile Tabs -->
+  <div class="mobile-tabs">
+    <div class="mobile-tabs-inner">
+      <button class="mob-tab active" onclick="mudarTab('inicio', null, this)">
+        <span class="mob-tab-icon">🏠</span>Início
+      </button>
+      <button class="mob-tab" onclick="mudarTab('modulos', null, this)">
+        <span class="mob-tab-icon">🎓</span>Módulos
+      </button>
+      <button class="mob-tab" onclick="mudarTab('materiais', null, this)">
+        <span class="mob-tab-icon">📚</span>Materiais
+      </button>
+      <button class="mob-tab" onclick="mudarTab('bonus', null, this)">
+        <span class="mob-tab-icon">🎁</span>Bônus
+      </button>
+      <button class="mob-tab mob-crm-btn" id="mob-crm-btn" onclick="mudarTab('crm', null, this)" style="display:none;">
+        <span class="mob-tab-icon">👥</span>CRM
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ─── MODAL CRM ──────────────────────────────────────────── -->
+<div class="crm-overlay" id="crm-overlay" onclick="crmFecharClick(event)">
+  <div class="crm-modal">
+    <div class="crm-modal-header">
+      <div class="crm-modal-titulo" id="crm-modal-titulo">Novo Aluno</div>
+      <button class="crm-modal-fechar" onclick="crmFecharModal()">✕</button>
+    </div>
+    <div class="crm-modal-body">
+      <input type="hidden" id="crm-id">
+      <div class="crm-field">
+        <label>Nome completo *</label>
+        <input type="text" id="crm-nome" placeholder="Dra. Maria Silva">
+      </div>
+      <div class="crm-field-row">
+        <div class="crm-field">
+          <label>E-mail</label>
+          <input type="email" id="crm-email" placeholder="maria@email.com">
+        </div>
+        <div class="crm-field">
+          <label>Telefone</label>
+          <input type="text" id="crm-telefone" placeholder="(51) 99999-9999">
+        </div>
+      </div>
+      <div class="crm-field-row">
+        <div class="crm-field">
+          <label>Data de ingresso</label>
+          <input type="date" id="crm-data-ingresso">
+        </div>
+        <div class="crm-field">
+          <label>Tempo de acesso</label>
+          <select id="crm-tempo-acesso">
+            <option value="">Selecionar...</option>
+            <option value="3 meses">3 meses</option>
+            <option value="6 meses">6 meses</option>
+            <option value="12 meses">12 meses</option>
+            <option value="Vitalício">Vitalício</option>
+          </select>
+        </div>
+      </div>
+      <div class="crm-field-row">
+        <div class="crm-field">
+          <label>Especialidade</label>
+          <select id="crm-especialidade">
+            <option value="">Selecionar...</option>
+            <option value="Psiquiatra">Psiquiatra</option>
+            <option value="Neurologista">Neurologista</option>
+            <option value="Clínico Geral">Clínico Geral</option>
+            <option value="Pediatra">Pediatra</option>
+            <option value="Psicoterapeuta">Psicoterapeuta</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="crm-field">
+          <label>Status</label>
+          <select id="crm-status">
+            <option value="Ativo">Ativo</option>
+            <option value="Pendente">Pendente</option>
+            <option value="Inativo">Inativo</option>
+          </select>
+        </div>
+      </div>
+      <div class="crm-field">
+        <label>Observações</label>
+        <textarea id="crm-obs" placeholder="Notas internas sobre este aluno..."></textarea>
+      </div>
+    </div>
+    <div class="crm-modal-footer">
+      <button class="btn-cancelar" onclick="crmFecharModal()">Cancelar</button>
+      <button class="btn-salvar" onclick="crmSalvar()">Salvar Aluno</button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PAINEL AULAS ───────────────────────────────────────── -->
+<div class="painel-overlay" id="painel-overlay" onclick="fecharPainelClick(event)">
+  <div class="painel-aulas" id="painel-aulas">
+    <div class="painel-header">
+      <button class="painel-back" onclick="fecharPainel()">←</button>
+      <div class="painel-header-text">
+        <div class="painel-mes" id="painel-mes"></div>
+        <div class="painel-titulo" id="painel-titulo"></div>
+      </div>
+    </div>
+    <div class="painel-body">
+      <div class="painel-desc" id="painel-desc"></div>
+      <div class="lista-label">Aulas do Módulo</div>
+      <div class="lista-aulas" id="lista-aulas"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── PLAYER ─────────────────────────────────────────────── -->
+<div class="player-overlay" id="player-overlay">
+  <div class="player-header">
+    <div class="player-titulo" id="player-titulo"></div>
+    <button class="player-close" onclick="fecharPlayer()">✕</button>
+  </div>
+  <div class="player-wrap">
+    <iframe id="player-frame" allowfullscreen allow="autoplay; fullscreen"></iframe>
+  </div>
+  <div class="player-desc" id="player-desc"></div>
+</div>
+
+<script>
+/* ================================================================
+   CONFIGURACAO — edite aqui para personalizar a plataforma
+   ================================================================ */
+let isAdmin = false;
+
+const CONFIG = {
+
+  // Senha de acesso dos alunos
+  senha: 'ips2026',
+
+  // Senha do painel administrativo (CRM)
+  senhaAdmin: 'renata-admin2026',
+
+  // URL da foto da Dra. Renata Guerra (colocar link direto da imagem)
+  foto: 'renata-foto.jpg',
+
+  // Informacoes da plataforma
+  marca: {
+    nome: 'Dra. Renata Guerra',
+    subtitulo: 'Formação em Psiquiatria Somatopsíquica',
+    boasVindas: 'Sua jornada na Psiquiatria Somatopsíquica',
+    descBV: 'Selecione um módulo para começar. A formação segue uma trilha progressiva de 6 meses.',
+  },
+
+  // ─── MODULOS ─────────────────────────────────────────────────
+  // mes: "Mês 01" | thumb: URL da capa | aulas: array de aulas
+  modulos: [
+    {
+      id: 1,
+      mes: 'Mês 01',
+      titulo: 'Habitar o Corpo',
+      subtitulo: 'Fundamentos, Presença e Segurança',
+      descricao: 'Fundamentos da IPS, presença, grounding, segurança e corporificação. O médico vivencia a base antes de aplicar.',
+      thumb: '',
+      icone: '🌱',
+      aulas: [
+        { titulo: 'Aula 1 - Boas-vindas e Introdução ao Método IPS', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 2 - Fundamentos da Psiquiatria Somatopsíquica', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 3 - Presença e Enraizamento na Prática', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 4 - Grounding e Segurança Corporal', duracao: '00:00', video: '', descricao: '' },
+      ]
+    },
+    {
+      id: 2,
+      mes: 'Mês 02',
+      titulo: 'Escutar o Corpo',
+      subtitulo: 'Interocepção e Mapeamento',
+      descricao: 'Interocepção, propriocepção, emoções no corpo e mapeamento somatopsíquico. Ler os sinais que o corpo envia.',
+      thumb: '',
+      icone: '👂',
+      aulas: [
+        { titulo: 'Aula 1 - Interocepção e Propriocepção', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 2 - Emoções no Corpo', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 3 - Mapeamento Somatopsíquico', duracao: '00:00', video: '', descricao: '' },
+      ]
+    },
+    {
+      id: 3,
+      mes: 'Mês 03',
+      titulo: 'Transformar o Corpo',
+      subtitulo: 'Agência e C.O.R.A.G.E.M.',
+      descricao: 'Agência, movimento, resistência, autoeficácia e a ferramenta C.O.R.A.G.E.M. para transformar intenção em ação.',
+      thumb: '',
+      icone: '⚡',
+      aulas: [
+        { titulo: 'Aula 1 - Agência Somatopsíquica', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 2 - Resistência e Autoeficácia', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 3 - A Ferramenta C.O.R.A.G.E.M.', duracao: '00:00', video: '', descricao: '' },
+      ]
+    },
+    {
+      id: 4,
+      mes: 'Mês 04',
+      titulo: 'Aplicar a IPS',
+      subtitulo: 'Prática Clínica e Protocolo',
+      descricao: 'Aplicação clínica, perguntas somatopsíquicas, segurança e protocolo de 8 semanas. A IPS vai para os pacientes.',
+      thumb: '',
+      icone: '🩺',
+      aulas: [
+        { titulo: 'Aula 1 - Protocolo Clínico de 8 Semanas', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 2 - Perguntas Somatopsíquicas', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 3 - Segurança na Aplicação', duracao: '00:00', video: '', descricao: '' },
+      ]
+    },
+    {
+      id: 5,
+      mes: 'Mês 05',
+      titulo: 'Transcender o Corpo',
+      subtitulo: 'Propósito e Espiritualidade',
+      descricao: 'Insight, espiritualidade baseada em evidências, propósito e sentido. A dimensão mais profunda da mudança.',
+      thumb: '',
+      icone: '✨',
+      aulas: [
+        { titulo: 'Aula 1 - Insight e Integração', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 2 - Espiritualidade e Evidência', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 3 - Propósito e Sentido na Prática', duracao: '00:00', video: '', descricao: '' },
+      ]
+    },
+    {
+      id: 6,
+      mes: 'Mês 06',
+      titulo: 'Integrar o Corpo',
+      subtitulo: 'Sustentação e Certificação',
+      descricao: 'Gratidão, celebração, prevenção de recaídas, sustentação e apresentação de caso clínico. Certificação.',
+      thumb: '',
+      icone: '🎓',
+      aulas: [
+        { titulo: 'Aula 1 - Gratidão e Celebração', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 2 - Prevenção de Recaídas', duracao: '00:00', video: '', descricao: '' },
+        { titulo: 'Aula 3 - Apresentação de Caso Clínico', duracao: '00:00', video: '', descricao: '' },
+      ]
+    },
+  ],
+
+  // ─── MATERIAIS ───────────────────────────────────────────────
+  materiais: [
+    { icone: '📘', titulo: 'Manual do Aluno IPS', descricao: 'Guia completo com fundamentos e protocolos do método.', link: '#' },
+    { icone: '📋', titulo: 'Roteiro dos 7 Passos da IPS', descricao: 'Script clínico estruturado para conduzir a intervenção.', link: '#' },
+    { icone: '🧭', titulo: 'Guia C.O.R.A.G.E.M.', descricao: 'Material completo da ferramenta de sustentação de hábitos.', link: '#' },
+    { icone: '📝', titulo: 'Ficha de Plano C.O.R.A.G.E.M.', descricao: 'Formulário para trabalhar com o paciente sessão a sessão.', link: '#' },
+    { icone: '📓', titulo: 'Diário de Prática Somatopsíquica', descricao: 'Ferramenta de autoconhecimento do médico em formação.', link: '#' },
+    { icone: '🗂️', titulo: 'Fichas de Mapeamento Somatopsíquico', descricao: 'Templates para registrar o mapeamento corporal do paciente.', link: '#' },
+    { icone: '📊', titulo: 'Modelo de Registro Clínico IPS', descricao: 'Prontuário adaptado para registrar as intervenções com segurança.', link: '#' },
+    { icone: '💬', titulo: 'Roteiro de Discussão de Caso', descricao: 'Estrutura para supervisões mensais e discussão em grupo.', link: '#' },
+    { icone: '🔬', titulo: 'Biblioteca Científica Comentada', descricao: 'Referências anotadas sobre IPS, interocepção e regulação emocional.', link: '#' },
+    { icone: '📄', titulo: 'Dossiê Científico da IPS - Artigo 1', descricao: 'Guerra RF & Tavares H (2025). Theory and conception of Somatopsyche Psychiatric Intervention: a transdiagnostic body-mind intervention for psychiatric practice.', link: 'artigos/guerra-tavares-somatopsyche-2025.pdf' },
+    { icone: '📄', titulo: 'Dossiê Científico da IPS - Artigo 2', descricao: 'Guerra RF & Tavares H (2026). Presence and agency in lifestyle medicine: A neuropsychobiological framework for sustainable health transformation.', link: 'artigos/guerra-tavares-presence-agency-2026.pdf' },
+    { icone: '🎓', titulo: 'Critérios de Certificação', descricao: 'Roteiro para a apresentação de caso clínico e critérios de certificação.', link: '#' },
+  ],
+
+  // ─── BONUS ───────────────────────────────────────────────────
+  bonus: [
+    {
+      icone: '🏅',
+      titulo: 'Certificado de Conclusão',
+      descricao: 'Certificado ao término da formação após apresentação de caso clínico.',
+      tag: 'Disponível no Mês 6',
+    },
+    {
+      icone: '👥',
+      titulo: 'Supervisão Mensal Individual',
+      descricao: 'Sessão mensal de supervisão direta com a Dra. Renata Guerra para acompanhar sua aplicação clínica.',
+      tag: 'Pacote Completa e Imersão Total',
+    },
+    {
+      icone: '🩺',
+      titulo: 'Protocolo Clínico de 8 Semanas',
+      descricao: 'Protocolo estruturado completo para aplicar a IPS com seus pacientes com segurança e progressão.',
+      tag: 'Incluso',
+    },
+    {
+      icone: '🤝',
+      titulo: 'Grupo de Prática com Pares',
+      descricao: 'Acesso ao grupo de prática com outros médicos em formação para discussão de casos e aprendizado coletivo.',
+      tag: 'Acesso Imediato',
+    },
+    {
+      icone: '📱',
+      titulo: 'Acompanhamento de Implementação',
+      descricao: '6 meses adicionais de acompanhamento direto na aplicação do Método IPS na sua clínica.',
+      tag: 'Imersão Total',
+    },
+  ],
+
+};
+/* ================================================================
+   FIM DA CONFIGURACAO
+   ================================================================ */
+
+
+// ─── ESTADO ──────────────────────────────────────────────────────
+let moduloAtual = null;
+
+// ─── LOGIN ────────────────────────────────────────────────────────
+function tentarLogin() {
+  const val = document.getElementById('campo-senha').value.trim();
+  if (val === CONFIG.senha || val === CONFIG.senhaAdmin) {
+    isAdmin = (val === CONFIG.senhaAdmin);
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    if (isAdmin) {
+      document.getElementById('tab-crm-btn').style.display = 'inline-flex';
+      document.getElementById('mob-crm-btn').style.display = 'flex';
+      crmCarregar();
+    }
+    iniciarApp();
+  } else {
+    document.getElementById('login-erro').style.display = 'block';
+    document.getElementById('campo-senha').value = '';
+    document.getElementById('campo-senha').focus();
+  }
+}
+
+function sair() {
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('campo-senha').value = '';
+  document.getElementById('login-erro').style.display = 'none';
+}
+
+document.getElementById('campo-senha').addEventListener('keydown', e => {
+  if (e.key === 'Enter') tentarLogin();
+});
+
+// ─── INICIAR APP ──────────────────────────────────────────────────
+function iniciarApp() {
+  document.title = CONFIG.marca.nome + ' - Portal do Aluno';
+
+  // Foto
+  const fotoWrap = document.getElementById('login-foto-wrap');
+  if (CONFIG.foto) {
+    fotoWrap.innerHTML = `<img src="${CONFIG.foto}" alt="${CONFIG.marca.nome}" class="login-foto">`;
+  } else {
+    fotoWrap.innerHTML = `<div class="login-foto-placeholder">👩‍⚕️</div>`;
+  }
+
+  // Boas-vindas
+  document.getElementById('bv-titulo').innerHTML = CONFIG.marca.boasVindas;
+  document.getElementById('bv-desc').textContent = CONFIG.marca.descBV;
+
+  // Badges stats
+  document.getElementById('badge-modulos').textContent = CONFIG.modulos.length + ' módulos';
+  document.getElementById('badge-materiais').textContent = CONFIG.materiais.length + ' materiais';
+  document.getElementById('badge-bonus').textContent = CONFIG.bonus.length + ' bônus';
+
+  renderTrilha();
+  renderModulos();
+  renderMateriais();
+  renderBonus();
+}
+
+// ─── TRILHA ──────────────────────────────────────────────────────
+function renderTrilha() {
+  const lista = document.getElementById('trilha-list');
+  lista.innerHTML = CONFIG.modulos.map((m, i) => `
+    <div class="trilha-item">
+      <div class="trilha-num ${i === CONFIG.modulos.length - 1 ? 'gold' : ''}">${m.id}</div>
+      <div class="trilha-body">
+        <div class="trilha-mes">${m.mes}</div>
+        <div class="trilha-titulo">${m.titulo}</div>
+        <div class="trilha-desc">${m.descricao}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── MODULOS ─────────────────────────────────────────────────────
+function renderModulos() {
+  const grid = document.getElementById('grid-modulos');
+  grid.innerHTML = CONFIG.modulos.map((m, idx) => `
+    <div class="card-modulo" onclick="abrirModulo(${idx})">
+      <div class="card-thumb">
+        ${m.thumb ? `<img src="${m.thumb}" alt="${m.titulo}" onerror="this.style.display='none'">` : ''}
+        <div class="card-thumb-icon">${m.icone || '📚'}</div>
+        <div class="card-thumb-num">${m.mes}</div>
+        <div class="card-thumb-count">${m.aulas.length} aula${m.aulas.length !== 1 ? 's' : ''}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-mes">${m.mes} - ${m.subtitulo}</div>
+        <div class="card-titulo">${m.titulo}</div>
+        <div class="card-desc">${m.descricao}</div>
+        <div class="card-footer">
+          <div class="card-tag">Ver aulas</div>
+          <div class="card-arrow">→</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ─── MATERIAIS ───────────────────────────────────────────────────
+function renderMateriais() {
+  const grid = document.getElementById('grid-materiais');
+  grid.innerHTML = CONFIG.materiais.map(m => `
+    <div class="material-card" onclick="window.open('${m.link}', '_blank')">
+      <div class="material-icon">${m.icone}</div>
+      <div class="material-info">
+        <div class="material-titulo">${m.titulo}</div>
+        <div class="material-desc">${m.descricao}</div>
+      </div>
+      <div class="material-dl">↓</div>
+    </div>
+  `).join('');
+}
+
+// ─── BONUS ───────────────────────────────────────────────────────
+function renderBonus() {
+  const grid = document.getElementById('grid-bonus');
+  grid.innerHTML = CONFIG.bonus.map(b => `
+    <div class="bonus-card">
+      <span class="bonus-icon">${b.icone}</span>
+      <div class="bonus-titulo">${b.titulo}</div>
+      <div class="bonus-desc">${b.descricao}</div>
+      ${b.tag ? `<div class="bonus-tag">${b.tag}</div>` : ''}
+    </div>
+  `).join('');
+}
+
+// ─── TABS ────────────────────────────────────────────────────────
+function mudarTab(nome, btnDesktop, btnMobile) {
+  // Conteudo
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + nome).classList.add('active');
+  // Desktop tabs
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  if (btnDesktop) btnDesktop.classList.add('active');
+  // Mobile tabs
+  document.querySelectorAll('.mob-tab').forEach(b => b.classList.remove('active'));
+  if (btnMobile) btnMobile.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ─── PAINEL AULAS ────────────────────────────────────────────────
+function abrirModulo(idx) {
+  moduloAtual = CONFIG.modulos[idx];
+  document.getElementById('painel-mes').textContent = moduloAtual.mes;
+  document.getElementById('painel-titulo').textContent = moduloAtual.titulo;
+  document.getElementById('painel-desc').textContent = moduloAtual.descricao;
+
+  const lista = document.getElementById('lista-aulas');
+  lista.innerHTML = moduloAtual.aulas.map((a, i) => `
+    <div class="item-aula" onclick="abrirPlayer(${i})">
+      <div class="aula-play">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+      <div class="aula-info">
+        <div class="aula-titulo">${a.titulo}</div>
+        <div class="aula-meta">Aula ${i + 1}</div>
+      </div>
+      <div class="aula-dur">${a.duracao}</div>
+    </div>
+  `).join('');
+
+  document.getElementById('painel-overlay').style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function fecharPainel() {
+  document.getElementById('painel-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+  moduloAtual = null;
+}
+
+function fecharPainelClick(e) {
+  if (e.target === document.getElementById('painel-overlay')) fecharPainel();
+}
+
+// ─── PLAYER ──────────────────────────────────────────────────────
+function abrirPlayer(aulaIdx) {
+  const aula = moduloAtual.aulas[aulaIdx];
+  if (!aula.video) {
+    alert('Vídeo ainda não disponível para esta aula.');
+    return;
+  }
+  document.getElementById('player-titulo').textContent = aula.titulo;
+  document.getElementById('player-frame').src = aula.video;
+  document.getElementById('player-desc').textContent = aula.descricao || '';
+  document.getElementById('player-overlay').style.display = 'flex';
+}
+
+function fecharPlayer() {
+  document.getElementById('player-overlay').style.display = 'none';
+  document.getElementById('player-frame').src = '';
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (document.getElementById('crm-overlay').classList.contains('open')) {
+      crmFecharModal();
+    } else if (document.getElementById('player-overlay').style.display === 'flex') {
+      fecharPlayer();
+    } else if (document.getElementById('painel-overlay').style.display === 'flex') {
+      fecharPainel();
+    }
+  }
+});
+
+// ─── CRM ──────────────────────────────────────────────────────────
+let crmDados = [];
+const SB_URL = 'https://grwbazynlamfpvbmidcs.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdyd2JhenlubGFtZnB2Ym1pZGNzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MDQ0NTk4MywiZXhwIjoyMDc2MDIxOTgzfQ.8znZFq04uRC16asPb9uWJpMrvtkeetMTyw4vPAMhaGs';
+
+async function sbFetch(path, opts = {}) {
+  const res = await fetch(SB_URL + path, {
+    ...opts,
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': opts.prefer || '',
+      ...(opts.headers || {})
+    }
+  });
+  if (res.status === 204 || res.status === 201) return null;
+  return res.json();
+}
+
+async function crmCarregar() {
+  const data = await sbFetch('/rest/v1/crm_renata_alunos?select=*&order=criado_em.desc');
+  crmDados = data || [];
+  crmAtualizarStats();
+  crmRenderizar(crmDados);
+}
+
+function crmAtualizarStats() {
+  document.getElementById('crm-total').textContent = crmDados.length;
+  document.getElementById('crm-ativos').textContent = crmDados.filter(a => a.status === 'Ativo').length;
+  document.getElementById('crm-pendentes').textContent = crmDados.filter(a => a.status === 'Pendente').length;
+}
+
+function crmFiltrar() {
+  const q = document.getElementById('crm-busca').value.toLowerCase();
+  if (!q) { crmRenderizar(crmDados); return; }
+  const filtrado = crmDados.filter(a =>
+    (a.nome || '').toLowerCase().includes(q) ||
+    (a.email || '').toLowerCase().includes(q) ||
+    (a.especialidade || '').toLowerCase().includes(q)
+  );
+  crmRenderizar(filtrado);
+}
+
+function crmCalcSaida(dataIngresso, tempoAcesso) {
+  if (!dataIngresso || !tempoAcesso || tempoAcesso === 'Vitalício') return null;
+  const meses = parseInt(tempoAcesso);
+  if (!meses) return null;
+  const d = new Date(dataIngresso + 'T12:00:00');
+  d.setMonth(d.getMonth() + meses);
+  return d;
+}
+
+function crmRenderizar(lista) {
+  const tbody = document.getElementById('crm-tbody');
+  if (!lista.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="crm-empty">Nenhum aluno encontrado.</td></tr>';
+    return;
+  }
+  const hoje = new Date();
+  hoje.setHours(0,0,0,0);
+  tbody.innerHTML = lista.map(a => {
+    const st = (a.status || 'Ativo').toLowerCase();
+    const dtFmt = a.data_ingresso ? new Date(a.data_ingresso + 'T12:00:00').toLocaleDateString('pt-BR') : '-';
+    const saida = crmCalcSaida(a.data_ingresso, a.tempo_acesso);
+    let saidaFmt = '-';
+    let venceBreve = false;
+    if (saida) {
+      saidaFmt = saida.toLocaleDateString('pt-BR');
+      const diffDias = Math.ceil((saida - hoje) / (1000 * 60 * 60 * 24));
+      if (diffDias <= 30) venceBreve = true;
+    } else if (a.tempo_acesso === 'Vitalício') {
+      saidaFmt = 'Vitalício';
+    }
+    const rowStyle = venceBreve ? ' style="background:rgba(220,38,38,0.08);"' : '';
+    const nomeStyle = venceBreve ? ' style="color:#ef4444;font-weight:700;"' : '';
+    const alerta = venceBreve ? ' <span title="Acesso expira em breve" style="color:#ef4444;font-size:0.75rem;">⚠ vence em breve</span>' : '';
+    return `
+    <tr${rowStyle}>
+      <td><div class="crm-nome"${nomeStyle}>${a.nome || '-'}${alerta}</div></td>
+      <td><div class="crm-email">${a.email || '-'}</div></td>
+      <td><div class="crm-tel">${a.telefone || '-'}</div></td>
+      <td>${a.especialidade ? '<span class="badge-esp">'+a.especialidade+'</span>' : '-'}</td>
+      <td>${dtFmt}</td>
+      <td>${a.tempo_acesso || '-'}</td>
+      <td${venceBreve ? ' style="color:#ef4444;font-weight:600;"' : ''}>${saidaFmt}</td>
+      <td><span class="badge-status ${st}">${a.status || 'Ativo'}</span></td>
+      <td><div class="crm-acoes">
+        <button class="btn-edit" onclick="crmAbrirModal('${a.id}')">Editar</button>
+        <button class="btn-del" onclick="crmExcluir('${a.id}','${(a.nome||'').replace(/'/g,"\\'")}')">Excluir</button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+function crmAbrirModal(id) {
+  document.getElementById('crm-overlay').classList.add('open');
+  if (id) {
+    const a = crmDados.find(x => x.id === id);
+    if (!a) return;
+    document.getElementById('crm-modal-titulo').textContent = 'Editar Aluno';
+    document.getElementById('crm-id').value = a.id;
+    document.getElementById('crm-nome').value = a.nome || '';
+    document.getElementById('crm-email').value = a.email || '';
+    document.getElementById('crm-telefone').value = a.telefone || '';
+    document.getElementById('crm-data-ingresso').value = a.data_ingresso || '';
+    document.getElementById('crm-tempo-acesso').value = a.tempo_acesso || '';
+    document.getElementById('crm-especialidade').value = a.especialidade || '';
+    document.getElementById('crm-status').value = a.status || 'Ativo';
+    document.getElementById('crm-obs').value = a.observacoes || '';
+  } else {
+    document.getElementById('crm-modal-titulo').textContent = 'Novo Aluno';
+    document.getElementById('crm-id').value = '';
+    document.getElementById('crm-nome').value = '';
+    document.getElementById('crm-email').value = '';
+    document.getElementById('crm-telefone').value = '';
+    document.getElementById('crm-data-ingresso').value = '';
+    document.getElementById('crm-tempo-acesso').value = '';
+    document.getElementById('crm-especialidade').value = '';
+    document.getElementById('crm-status').value = 'Ativo';
+    document.getElementById('crm-obs').value = '';
+  }
+}
+
+function crmFecharModal() {
+  document.getElementById('crm-overlay').classList.remove('open');
+}
+
+function crmFecharClick(e) {
+  if (e.target === document.getElementById('crm-overlay')) crmFecharModal();
+}
+
+async function crmSalvar() {
+  const nome = document.getElementById('crm-nome').value.trim();
+  if (!nome) { alert('Nome é obrigatório.'); return; }
+  const payload = {
+    nome,
+    email: document.getElementById('crm-email').value.trim() || null,
+    telefone: document.getElementById('crm-telefone').value.trim() || null,
+    data_ingresso: document.getElementById('crm-data-ingresso').value || null,
+    tempo_acesso: document.getElementById('crm-tempo-acesso').value || null,
+    especialidade: document.getElementById('crm-especialidade').value || null,
+    status: document.getElementById('crm-status').value || 'Ativo',
+    observacoes: document.getElementById('crm-obs').value.trim() || null,
+    atualizado_em: new Date().toISOString()
+  };
+  const id = document.getElementById('crm-id').value;
+  if (id) {
+    await sbFetch('/rest/v1/crm_renata_alunos?id=eq.' + id, { method: 'PATCH', body: JSON.stringify(payload) });
+  } else {
+    await sbFetch('/rest/v1/crm_renata_alunos', { method: 'POST', prefer: 'return=minimal', body: JSON.stringify(payload) });
+  }
+  crmFecharModal();
+  await crmCarregar();
+}
+
+async function crmExcluir(id, nome) {
+  if (!confirm('Excluir ' + nome + '? Esta ação não pode ser desfeita.')) return;
+  await sbFetch('/rest/v1/crm_renata_alunos?id=eq.' + id, { method: 'DELETE' });
+  await crmCarregar();
+}
+
+// ─── LOGIN COM DETECÇÃO DE ADMIN ──────────────────────────────────
+</script>
+</body>
+</html>
