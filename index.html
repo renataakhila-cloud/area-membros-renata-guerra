@@ -1457,6 +1457,7 @@
 <div class="player-overlay" id="player-overlay">
   <div class="player-header">
     <div class="player-titulo" id="player-titulo"></div>
+    <a id="player-pdf" href="#" target="_blank" rel="noopener noreferrer" style="display:none;flex-shrink:0;padding:10px 14px;border-radius:8px;background:#D4B86A;color:#0B1A35;font-size:0.85rem;font-weight:700;text-decoration:none;white-space:nowrap" aria-label="Abrir PDF de apoio da aula em nova aba">PDF da aula</a>
     <button class="player-close" onclick="fecharPlayer()">✕</button>
   </div>
   <div class="player-wrap">
@@ -1502,7 +1503,7 @@ const CONFIG = {
       thumb: '',
       icone: '🌱',
       aulas: [
-                { titulo: 'Aula 1 - Por que é tão difícil mudar?', duracao: '44:40', video: 'https://www.youtube.com/embed/hxbQbo-ofHA', descricao: 'Aula 1 da Formação em Psiquiatria Somatopsíquica com Dra. Renata Guerra. Da informação à transformação, passos 1 a 4 da IPS e ferramenta CORAGEM.' },
+                { titulo: 'Aula 1 - Por que é tão difícil mudar?', duracao: '44:40', pdf: 'Aula1_Guia_de_apoio_IPS.pdf', video: 'https://www.youtube.com/embed/hxbQbo-ofHA', descricao: 'Aula 1 da Formação em Psiquiatria Somatopsíquica com Dra. Renata Guerra. Da informação à transformação, passos 1 a 4 da IPS e ferramenta CORAGEM.' },
         { titulo: 'Aula 2 - Presença: habitando a própria experiência', duracao: '00:00', video: '', descricao: '' },
         { titulo: 'Aula 3 - Segurança, Teoria Polivagal e sua interface com a IPS', duracao: '00:00', video: '', descricao: '' },
         { titulo: 'Aula 4 - Agência: da percepção à escolha e à transformação', duracao: '00:00', video: '', descricao: '' },
@@ -1827,6 +1828,10 @@ function abrirPlayer(aulaIdx) {
   document.getElementById('player-titulo').textContent = aula.titulo;
   document.getElementById('player-frame').src = aula.video;
   document.getElementById('player-desc').textContent = aula.descricao || '';
+  const pdfLink = document.getElementById('player-pdf');
+  pdfLink.style.display = aula.pdf ? 'inline-flex' : 'none';
+  if (aula.pdf) pdfLink.href = aula.pdf;
+  else pdfLink.removeAttribute('href');
   document.getElementById('player-overlay').style.display = 'flex';
 }
 
