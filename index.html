@@ -1085,12 +1085,31 @@
     }
     .aula-play svg { width: 13px; height: 13px; fill: #fff; margin-left: 2px; }
 
-    .aula-info { flex: 1; }
+    .aula-info { flex: 1; min-width: 0; }
     .aula-titulo { font-size: 0.88rem; font-weight: 600; color: var(--az1); margin-bottom: 2px; }
     .aula-meta { font-size: 0.72rem; color: var(--txt-muted); }
     .aula-dur { font-size: 0.72rem; color: var(--txt-muted); flex-shrink: 0; }
+    .aula-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .aula-pdf-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 7px 10px;
+      border: 1px solid var(--border-g);
+      border-radius: 7px;
+      background: var(--g-pale);
+      color: var(--az1);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .aula-pdf-btn:hover { background: #F2E6BE; border-color: var(--g2); }
 
     @media (max-width: 600px) {
+      .item-aula { align-items: flex-start; }
+      .aula-actions { flex-direction: column; align-items: flex-end; gap: 6px; }
+      .aula-pdf-btn { padding: 6px 8px; }
       .painel-aulas { max-width: 100%; }
     }
 
@@ -1505,7 +1524,7 @@ const CONFIG = {
       aulas: [
                 { titulo: 'Aula 1 - Por que é tão difícil mudar?', duracao: '44:40', pdf: 'Aula1_Guia_de_apoio_IPS.pdf', video: 'https://www.youtube.com/embed/hxbQbo-ofHA', descricao: 'Aula 1 da Formação em Psiquiatria Somatopsíquica com Dra. Renata Guerra. Da informação à transformação, passos 1 a 4 da IPS e ferramenta CORAGEM.' },
         { titulo: 'Aula 2 - Presença: habitando a própria experiência', duracao: '1:22:04', pdf: 'Aula2_Guia_de_apoio_IPS.pdf', video: 'https://www.youtube.com/embed/BUw4DnLomhY', descricao: 'Aula 2 da Formação em Psiquiatria Somatopsíquica com Dra. Renata Guerra. Presença, experiência direta, codificação preditiva, interocepção e prática completa dos 7 passos da IPS no modo transformação.' },
-        { titulo: 'Aula 3 - Segurança, Teoria Polivagal e sua interface com a IPS', duracao: '1:05:04', video: 'https://www.youtube.com/embed/x4rjMAkmJG8', descricao: 'Aula 3 da Formação em Psiquiatria Somatopsíquica com Dra. Renata Guerra. Segurança, hierarquia autonômica, neurocepção, movimentos biológicos, corregulação e suas interfaces com a prática da IPS.' },
+        { titulo: 'Aula 3 - Segurança, Teoria Polivagal e sua interface com a IPS', duracao: '1:05:04', pdf: 'Aula3_Guia_de_apoio_IPS.pdf', video: 'https://www.youtube.com/embed/x4rjMAkmJG8', descricao: 'Aula 3 da Formação em Psiquiatria Somatopsíquica com Dra. Renata Guerra. Segurança, hierarquia autonômica, neurocepção, movimentos biológicos, corregulação e suas interfaces com a prática da IPS.' },
         { titulo: 'Aula 4 - Agência: da percepção à escolha e à transformação', duracao: '00:00', video: '', descricao: '' },
       ]
     },
@@ -1798,9 +1817,12 @@ function abrirModulo(idx) {
       </div>
       <div class="aula-info">
         <div class="aula-titulo">${a.titulo}</div>
-        <div class="aula-meta">Aula ${i + 1}</div>
+        <div class="aula-meta">Aula ${i + 1}${a.pdf ? ' · Material de apoio disponível' : ''}</div>
       </div>
-      <div class="aula-dur">${a.duracao}</div>
+      <div class="aula-actions">
+        ${a.pdf ? `<a class="aula-pdf-btn" href="${a.pdf}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" aria-label="Abrir PDF de apoio de ${a.titulo}">📄 PDF da aula</a>` : ''}
+        <div class="aula-dur">${a.duracao}</div>
+      </div>
     </div>
   `).join('');
 
